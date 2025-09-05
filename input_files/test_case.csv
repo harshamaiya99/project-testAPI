@@ -1,0 +1,3 @@
+tc_no,tc_name,tc_description
+TC1,POST - passed & GET - passed,Sample description
+TC2,POST - assertion error & GET - passed,Another description

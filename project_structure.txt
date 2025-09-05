@@ -1,0 +1,30 @@
+project_testAPI
+├── README.md
+├── config                                                # Configuration folder
+│   └── config.py                                         # Python script
+├── flow.txt                                              # Text file
+├── input_files                                           # Input data files
+│   ├── test_case.csv                                     # CSV data file
+│   └── test_data.csv                                     # CSV data file
+├── project_structure.txt                                 # Text file
+├── test_reports                                          # Generated reports
+│   └── test_report.html                                  # HTML file
+├── test_result_generator.py                              # Python script
+├── test_results                                          # Test execution results
+│   ├── TC1_POST - passed & GET - passed.docx             # Word document
+│   └── TC2_POST - assertion error & GET - passed.docx    # Word document
+├── tests                                                 # Test cases
+│   ├── helper_functions
+│   │   └── write_to_csv.py                               # Python script
+│   └── test_api.py                                       # Python script
+└── utils
+    ├── docx_generator
+    │   ├── export_to_docx.py                             # Python script
+    │   └── template.docx                                 # Word document
+    └── report_generator
+        ├── generate_report.py                            # Python script
+        ├── static
+        │   ├── script.js
+        │   └── style.css
+        └── templates
+            └── report_template.html                      # HTML file

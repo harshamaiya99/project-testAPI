@@ -1,0 +1,85 @@
+https://chatgpt.com/s/t_68adc91055408191aeb04d19c5a818e2
+https://chatgpt.com/s/t_68adcba9d59881919dfc946766821de2
+
+## 1) High-level overview
+This repo is a small API test automation project that:
+- Uses CSV files for test metadata (test_case.csv) and test data (test_data.csv).
+- Runs parameterized tests with pytest (test_api.py) to perform a POST then a GET against an API (currently `https://jsonplaceholder.typicode.com/posts`).
+- Collects per-test results into an in-memory session context fixture.
+- On session teardown it generates an HTML report (test_report.html) and exports DOCX test-case files (stored in test_results) with appended request/response details for passed test cases.
+- Has a helper to write returned IDs back into test_data.csv.
+- Has a small utility (test_result_generator.py) that generates base .docx test-case files from test_case.csv and a Word template.
+
+Primary files (short purpose)
+- config.py — paths and constants (TEST_DATA_PATH, TEST_CASE_PATH, TEST_RESULTS_DIR, TEST_REPORTS_DIR, DOCX_TEMPLATE_PATH).
+- test_case.csv — test case metadata (tc_no, tc_name, tc_description).
+- test_data.csv — test data rows (tc_no,userId,title,body,post_status_code,get_status_code,id).
+- test_api.py — main pytest test, CSV readers, POST/GET helpers, session fixture that aggregates results, teardown triggers report + DOCX export.
+- write_to_csv.py — writes returned ID back to test_data.csv.
+- generate_report.py — builds HTML report by inlining CSS/JS into template and opening it in browser.
+- export_to_docx.py — appends request/response details to an existing DOCX file for passed cases.
+- test_result_generator.py — creates the base DOCX per test case from a template template.docx.
+- test_reports and test_results — output folders for HTML and DOCX artifacts.
+
+## 2) Data shapes / contracts
+- test_case.csv rows: { "tc_no", "tc_name", "tc_description" }.
+- test_data.csv rows: { "tc_no", "userId", "title", "body", "post_status_code", "get_status_code", "id" }.
+- Combined per-parametrize `row` (in test_api.py) is a merged dict: fields from test_case.csv (keyed by `tc_no`) plus the fields from test_data.csv.
+- Result dict appended to context for each test:
+  {
+    "tc_no", "scenario" (tc_name), "description",
+    "status" ("Passed"/"Failed"/"Error"),
+    "requests": [ per-request dict ],
+    optional "error_message","error_type","error_traceback","error_time"
+  }
+- Per-request dict (what report shows): result_heading, method, url, headers, body, status_code, response_headers, response_body, assertions (list of {assertion, expected, actual, result})
+
+Contract expectations
+- POST expected status code = `post_status_code` column (e.g., 201).
+- GET expected status code = `get_status_code` (e.g., 200).
+- `update_csv_with_id(tc_no, post_id)` expects to find row matching `tc_no` to set `id` column.
+
+## 3) Full test execution flow (step-by-step)
+1. Pytest start -> `@pytest.fixture(scope="session") test_context()` creates `{"all_results": []}` and yields it.
+2. `get_combined_test_data()` reads `TEST_CASE_PATH` and `TEST_DATA_PATH` and produces a list of merged rows. `@pytest.mark.parametrize("row", get_combined_test_data())` runs tests for each row.
+3. For each `row` test (function `test_post_and_get`):
+   - Initialize `result` object with metadata and empty `requests`.
+   - run POST: `run_post_request(row, int(row['post_status_code']))`
+     - Builds payload: {"userId": int(row["userId"]), "title": row["title"], "body": row["body"]}
+     - Calls `requests.post(BASE_URL, json=payload)`
+     - Collects request/response info into a dict with an assertion: status_code == expected
+   - Append POST result to `result["requests"]`.
+   - Extracts two values:
+     - `post_id = post_result["response_body"].get("userId")`  (used for GET)
+     - `post_id_csv = post_result["response_body"].get("id")`   (written to CSV)
+   - If `post_id` truthy, call `update_csv_with_id(row["tc_no"], post_id_csv)` to write `id` into test_data.csv.
+   - run GET: `run_get_request(post_id, int(row['get_status_code']))` -> `requests.get(BASE_URL/{post_id})`, collects response dict and an assertion on status_code.
+   - Append GET result to `result["requests"]`.
+   - Evaluate all assertions for all requests; if any false set `result["status"] = "Failed"`.
+   - On exceptions, set status "Error" and capture traceback/time/etc.
+   - Finally append `result` to `test_context["all_results"]`.
+4. After session (fixture teardown):
+   - `generate_html_report(test_results=context["all_results"], ...)` creates HTML, inlines style.css and `static/script.js` into report_template.html, writes to `TEST_REPORT_PATH` and opens it in browser.
+   - `export_all_results_to_docx(test_results=context["all_results"], output_dir=TEST_RESULTS_DIR)`:
+     - For each result with `"status" == "Passed"`, it searches `output_dir` for an existing DOCX that begins with `tc_no` (generated earlier by test_result_generator.py). If found, `export_response_to_docx` appends headings, request/response bodies and headers to that DOCX.
+     - If base docx missing, it warns and skips.
+
+## 4) Report generation details
+- HTML report:
+  - Summary metrics: total/passed/failed/error/pass%.
+  - An accordion per test showing request/response/assertions and tracebacks (if error).
+  - JSON views are pretty-printed and wrapped in a `.json-view` container with copy buttons.
+  - The report file is written to `TEST_REPORT_PATH` (from config.py), then opened via `webbrowser.open`.
+- DOCX results:
+  - test_result_generator.py reads test_case.csv and for each case writes a base DOCX file using template.docx. Filename safe-guarding and path length truncation present.
+  - `export_all_results_to_docx` appends only for passed tests. It will fail silently with a warning if the base docx is not present or if permission denied when saving.
+
+## 5) CSV write-back behavior
+- `update_csv_with_id(tc_no, post_id)`:
+  - Loads test_data.csv as a DictReader, keeps `fieldnames`.
+  - Adds `"id"` to `fieldnames` if missing.
+  - Finds the row where `row["tc_no"] == tc_no` and sets `row["id"] = str(post_id)`.
+  - Writes the file back (overwrites original CSV) with writer.writeheader() and writer.writerows(rows).
+- The CSV file path is built relative to the helper file with `os.path.join(..., "..", "..", "input_files", "test_data.csv")`.
+
+

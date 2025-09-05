@@ -1,0 +1,124 @@
+body {
+    font-family: 'Segoe UI';  /* Use clean sans-serif font */
+    background: #f7f7f7;             /* Light grey background for the whole page */
+    margin: 0;                       /* Remove default browser margins */
+}
+
+.container {
+    max-width: 1200px;               /* Page content won’t stretch wider than 1200px */
+    margin: 30px auto;               /* Center horizontally with top/bottom spacing */
+    background: #fff;                /* White card-like background */
+    padding: 30px;                   /* Inner spacing */
+    border-radius: 8px;              /* Rounded corners */
+    box-shadow: 0 2px 8px #ccc;      /* Subtle shadow for depth */
+}
+
+.summary {
+    display: flex;                   /* Place summary items in a row */
+    gap: 40px;                       /* Space between them */
+    margin-bottom: 30px;             /* Space below summary bar */
+}
+.summary-item {
+    background: #f0f0f0;             /* Light grey background for each item */
+    padding: 20px;
+    border-radius: 8px;
+    flex: 1;                         /* Each box takes equal width */
+    text-align: center;              /* Center text inside */
+}
+.summary-item .count {
+    font-size: 2em;                  /* Make count numbers big */
+    font-weight: bold;
+}
+
+.status-pass, .assertion-pass { color: green; }   /* Passed test = green */
+.status-fail, .assertion-fail { color: red; }     /* Failed test = red */
+.status-error { color: orange; }                  /* Error = orange */
+
+.accordion-item {
+    background: #fafafa;
+    border: 1px solid #ddd;          /* Light border */
+    border-radius: 6px;
+    margin-bottom: 10px;             /* Space between accordions */
+}
+.accordion-header {
+    cursor: pointer;                 /* Looks clickable */
+    padding: 15px;
+    font-weight: bold;
+    display: flex;                   /* Arrange text & icon side by side */
+    align-items: center;
+    justify-content: space-between;  /* Space between title and expand icon */
+}
+.accordion-content {
+    display: none;
+    padding: 15px;
+    border-top: 1px solid #eee;
+
+    word-break: break-all;
+    overflow-wrap: break-word;
+    max-width: 100%;
+}
+
+
+.json-view-container {
+    position: relative;              /* Makes the container the positioning context for absolutely positioned elements (like .copy-btn) */
+    display: flex;                   /* Uses flexbox layout */
+    align-items: flex-start;         /* Aligns items (like code + copy button) at the top */
+}
+
+.json-view {
+    background: #222;                 /* Dark background (like a code editor theme) */
+    color: #fff;                      /* White text for contrast */
+    padding: 10px;                    /* Space inside around the text */
+    border-radius: 6px;               /* Rounded corners */
+    font-size: 0.95em;                /* Slightly smaller font for code-like look */
+    max-height: 400px;                /* Limit height so long JSON doesn’t overflow page */
+    overflow: auto;                   /* Adds scrollbars if content is too long */
+    width: 100%;                      /* Stretches to container width */
+    margin: 0;                        /* No extra margin outside */
+}
+
+.copy-btn {
+    position: absolute;              /* Places the button relative to the .json-view-container */
+    top: 8px;                        /* Moves it 8px down from the top edge */
+    right: 8px;                      /* Moves it 8px left from the right edge */
+    background: #444;                /* Dark grey button background */
+    color: #fff;                     /* White text (good contrast) */
+    border: none;                    /* Removes default border */
+    border-radius: 4px;              /* Rounds the button corners */
+    padding: 4px 8px;                /* Space around the text for clickability */
+    cursor: pointer;                 /* Pointer cursor on hover */
+    font-size: 1em;                  /* Normal font size */
+    opacity: 1;
+    transition: opacity 0.2s;        /* Smooth fade-in effect when hovered */
+}
+.copy-btn:hover {
+    opacity: 1;
+    background: #007bff;             /* Bright blue on hover */
+}
+
+.filter-bar {
+    margin-bottom: 20px;
+    display: flex;                   /* Align filters side by side */
+    gap: 20px;                       /* Space between filter elements */
+    align-items: center;
+}
+
+#toggleAllBtn {
+    margin-left: auto;               /* Pushes the button to the far right inside flex container */
+    padding: 8px 16px;               /* Extra clickable space around the text */
+    background-color: #007bff;       /* Bootstrap-style blue background */
+    color: #fff;                     /* White text for contrast */
+    border: none;                    /* Removes default button border */
+    border-radius: 4px;              /* Slightly rounded corners */
+    cursor: pointer;                 /* Pointer cursor on hover */
+    font-size: 14px;                 /* Medium-sized readable text */
+    transition: background-color 0.2s; /* Smooth color transition on hover/focus */
+}
+
+.filter-bar input,
+.filter-bar select {
+    padding: 6px 10px;     /* Adds inner spacing so text isn’t cramped */
+    border-radius: 4px;    /* Rounds the corners for a softer look */
+    border: 1px solid #ccc;/* Light grey border to make it distinct */
+}
+

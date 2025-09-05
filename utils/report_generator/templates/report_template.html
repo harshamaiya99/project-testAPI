@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API Test Report</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+
+<body>
+<div class='container'>
+    <h1>API Test Report</h1>
+    <div class='summary'>
+        <div class='summary-item'><div>Total Tests</div><div class='count'>{total}</div></div>
+        <div class='summary-item status-pass'><div>Passed</div><div class='count'>{passed}</div></div>
+        <div class='summary-item status-fail'><div>Failed</div><div class='count'>{failed}</div></div>
+        <div class='summary-item status-error'><div>Error</div><div class='count'>{error}</div></div>
+        <div class='summary-item'><div>Pass %</div><div class='count'>{pass_pct:.2f}%</div></div>
+    </div>
+
+    <div class='summary'>
+        <div>Environment: <b>{environment}</b></div>
+        <div>Tester: <b>{tester_name}</b></div>
+    </div>
+
+    <div class='filter-bar'>
+        <input type='text' id='searchInput' placeholder='Search by scenario...'>
+        <select id='statusFilter'>
+            <option value=''>All Statuses</option>
+            <option value='Passed'>Passed</option>
+            <option value='Failed'>Failed</option>
+            <option value='Error'>Error</option>
+        </select>
+        <button id='toggleAllBtn'>Expand All</button>
+    </div>
+
+    <div class='accordion' id='testAccordion'>
+        {accordion_html}
+    </div>
+</div>
+<script src="static/script.js"></script>
+</body>
+</html>
