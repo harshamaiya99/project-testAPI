@@ -1,3 +1,35 @@
-.idea
-.pytest_cache
-__pycache__
+.idea/
+.vscode/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Pytest cache
+.pytest_cache/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+pip-wheel-metadata/
+.eggs/
+
+# Test/report outputs (generated)
+test_reports/
+test_results/
+
+# Coverage and caches
+.coverage
+coverage.xml
+.mypy_cache/
+
+# Editor / OS files
+.DS_Store
+Thumbs.db
