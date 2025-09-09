@@ -14,7 +14,7 @@ BASE_URL = "https://jsonplaceholder.typicode.com/posts"
 ENVIRONMENT = "SIT"
 TESTER_NAME = "Harsha Maiya"
 
-TEST_REPORT_PATH = os.path.join(TEST_REPORTS_DIR, "test_report.html")
+TEST_REPORT_PATH = os.path.join(os.path.dirname(__file__), "..", "test_reports", "test_report.html")
 
 # ---------------- Pytest Context ---------------- #
 
@@ -71,7 +71,7 @@ def run_post_request(row, post_status_code):
 
 def run_get_request(post_id, get_status_code):
     url = f"{BASE_URL}/{post_id}"
-    response = requests.get(url)
+    response = requests.get(url,params=params, proxies=proxies, verify=False)
     return {
         "result_heading": "GET/Users",
         "method": "GET",

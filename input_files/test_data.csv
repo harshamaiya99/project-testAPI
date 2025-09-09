@@ -1,3 +1,6 @@
-tc_no,userId,title,body,post_status_code,get_status_code,id
-TC1,1,title 1,body 1,201,200,101
-TC2,2,title 2,body 2,201,200,101
+tc_no,interface,userId,title,body,post_status_code,get_status_code,id
+TC1,file,1,title 1,body 1,201,200,101
+TC2,file,2,title 2,body 2,201,200,101
+TC3,message,3,title 3,body 2,201,200,101
+TC4,file,4,title 4,body 2,201,200,101
+TC5,message,5,title 5,body 2,201,200,101

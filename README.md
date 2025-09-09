@@ -184,3 +184,35 @@ Contract expectations
 
 
 
+## Project Structure:
+<pre>
+<a href="./">📁 project_testAPI</a>
+├── <a href="./.gitignore">📄 .gitignore</a>
+├── <a href="./README.md">📄 README.md</a>
+├── <a href="./config/">📁 config</a>
+│   └── <a href="./config/config.py">📄 config.py</a>
+├── <a href="./flow.txt">📄 flow.txt</a>
+├── <a href="./input_files/">📁 input_files</a>
+│   ├── <a href="./input_files/test_case.csv">📄 test_case.csv</a>
+│   └── <a href="./input_files/test_data.csv">📄 test_data.csv</a>
+├── <a href="./openapi_specifications.json">📄 openapi_specifications.json</a>
+├── <a href="./project_structure.txt">📄 project_structure.txt</a>
+├── <a href="./project_structure_generator.py">📄 project_structure_generator.py</a>
+├── <a href="./test_result_generator.py">📄 test_result_generator.py</a>
+├── <a href="./tests/">📁 tests</a>
+│   ├── <a href="./tests/helper_functions/">📁 helper_functions</a>
+│   │   ├── <a href="./tests/helper_functions/csv_reader.py">📄 csv_reader.py</a>
+│   │   └── <a href="./tests/helper_functions/write_to_csv.py">📄 write_to_csv.py</a>
+│   └── <a href="./tests/test_api.py">📄 test_api.py</a>
+└── <a href="./utils/">📁 utils</a>
+    ├── <a href="./utils/docx_generator/">📁 docx_generator</a>
+    │   ├── <a href="./utils/docx_generator/export_to_docx.py">📄 export_to_docx.py</a>
+    │   └── <a href="./utils/docx_generator/template.docx">📄 template.docx</a>
+    └── <a href="./utils/report_generator/">📁 report_generator</a>
+        ├── <a href="./utils/report_generator/generate_report.py">📄 generate_report.py</a>
+        ├── <a href="./utils/report_generator/static/">📁 static</a>
+        │   ├── <a href="./utils/report_generator/static/script.js">📄 script.js</a>
+        │   └── <a href="./utils/report_generator/static/style.css">📄 style.css</a>
+        └── <a href="./utils/report_generator/templates/">📁 templates</a>
+            └── <a href="./utils/report_generator/templates/report_template.html">📄 report_template.html</a>
+</pre>
