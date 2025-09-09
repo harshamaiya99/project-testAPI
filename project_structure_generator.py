@@ -3,11 +3,18 @@ import re
 import html
 
 IGNORE_FOLDERS = {".idea", "__pycache__", ".pytest_cache", ".git", "test_results", "test_reports"}
+IGNORE_FILES = {"project_structure.txt", ".gitignore", ".env"}  # 👈 add files here
 README_FILE = "README.md"
 
 def build_tree(start_path, prefix="", relative_path=""):
     lines = []
-    entries = [e for e in sorted(os.listdir(start_path)) if e not in IGNORE_FOLDERS]
+    entries = [
+        e for e in sorted(os.listdir(start_path))
+        if not (
+            (os.path.isdir(os.path.join(start_path, e)) and e in IGNORE_FOLDERS) or
+            (os.path.isfile(os.path.join(start_path, e)) and e in IGNORE_FILES)
+        )
+    ]
     entries_count = len(entries)
 
     for i, entry in enumerate(entries):

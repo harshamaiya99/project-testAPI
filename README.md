@@ -52,10 +52,10 @@ https://chatgpt.com/s/t_68adcba9d59881919dfc946766821de2
 ## Project Structure:
 <pre>
 <a href="./">📁 project_testAPI</a>
-├── <a href="./.gitignore">📄 .gitignore</a>
 ├── <a href="./README.md">📄 README.md</a>
 ├── <a href="./config/">📁 config</a>
 │   └── <a href="./config/config.py">📄 config.py</a>
+├── <a href="./delete_folders.py">📄 delete_folders.py</a>
 ├── <a href="./flow.txt">📄 flow.txt</a>
 ├── <a href="./input_files/">📁 input_files</a>
 │   ├── <a href="./input_files/test_case.csv">📄 test_case.csv</a>
