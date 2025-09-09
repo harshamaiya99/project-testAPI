@@ -51,32 +51,32 @@ https://chatgpt.com/s/t_68adcba9d59881919dfc946766821de2
 
 ## Project Structure:
 <pre>
-📁 <a href="." style="text-decoration:none">project_testAPI</a>
-├── 📄 <a href="./.gitignore" style="text-decoration:none">.gitignore</a>
-├── 📄 <a href="./README.md" style="text-decoration:none">README.md</a>
-├── 📁 <a href="./config" style="text-decoration:none">config</a>
-│   └── 📄 <a href="./config/config.py" style="text-decoration:none">config.py</a>
-├── 📄 <a href="./flow.txt" style="text-decoration:none">flow.txt</a>
-├── 📁 <a href="./input_files" style="text-decoration:none">input_files</a>
-│   ├── 📄 <a href="./input_files/test_case.csv" style="text-decoration:none">test_case.csv</a>
-│   └── 📄 <a href="./input_files/test_data.csv" style="text-decoration:none">test_data.csv</a>
-├── 📄 <a href="./openapi_specifications.json" style="text-decoration:none">openapi_specifications.json</a>
-├── 📄 <a href="./project_structure_generator.py" style="text-decoration:none">project_structure_generator.py</a>
-├── 📄 <a href="./test_result_generator.py" style="text-decoration:none">test_result_generator.py</a>
-├── 📁 <a href="./tests" style="text-decoration:none">tests</a>
-│   ├── 📁 <a href="./tests/helper_functions" style="text-decoration:none">helper_functions</a>
-│   │   ├── 📄 <a href="./tests/helper_functions/csv_reader.py" style="text-decoration:none">csv_reader.py</a>
-│   │   └── 📄 <a href="./tests/helper_functions/write_to_csv.py" style="text-decoration:none">write_to_csv.py</a>
-│   └── 📄 <a href="./tests/test_api.py" style="text-decoration:none">test_api.py</a>
-└── 📁 <a href="./utils" style="text-decoration:none">utils</a>
-    ├── 📁 <a href="./utils/docx_generator" style="text-decoration:none">docx_generator</a>
-    │   ├── 📄 <a href="./utils/docx_generator/export_to_docx.py" style="text-decoration:none">export_to_docx.py</a>
-    │   └── 📄 <a href="./utils/docx_generator/template.docx" style="text-decoration:none">template.docx</a>
-    └── 📁 <a href="./utils/report_generator" style="text-decoration:none">report_generator</a>
-        ├── 📄 <a href="./utils/report_generator/generate_report.py" style="text-decoration:none">generate_report.py</a>
-        ├── 📁 <a href="./utils/report_generator/static" style="text-decoration:none">static</a>
-        │   ├── 📄 <a href="./utils/report_generator/static/script.js" style="text-decoration:none">script.js</a>
-        │   └── 📄 <a href="./utils/report_generator/static/style.css" style="text-decoration:none">style.css</a>
-        └── 📁 <a href="./utils/report_generator/templates" style="text-decoration:none">templates</a>
-            └── 📄 <a href="./utils/report_generator/templates/report_template.html" style="text-decoration:none">report_template.html</a>
+<a href="./">📁 project_testAPI</a>
+├── <a href="./.gitignore">📄 .gitignore</a>
+├── <a href="./README.md">📄 README.md</a>
+├── <a href="./config/">📁 config</a>
+│   └── <a href="./config/config.py">📄 config.py</a>
+├── <a href="./flow.txt">📄 flow.txt</a>
+├── <a href="./input_files/">📁 input_files</a>
+│   ├── <a href="./input_files/test_case.csv">📄 test_case.csv</a>
+│   └── <a href="./input_files/test_data.csv">📄 test_data.csv</a>
+├── <a href="./openapi_specifications.json">📄 openapi_specifications.json</a>
+├── <a href="./project_structure_generator.py">📄 project_structure_generator.py</a>
+├── <a href="./test_result_generator.py">📄 test_result_generator.py</a>
+├── <a href="./tests/">📁 tests</a>
+│   ├── <a href="./tests/helper_functions/">📁 helper_functions</a>
+│   │   ├── <a href="./tests/helper_functions/csv_reader.py">📄 csv_reader.py</a>
+│   │   └── <a href="./tests/helper_functions/write_to_csv.py">📄 write_to_csv.py</a>
+│   └── <a href="./tests/test_api.py">📄 test_api.py</a>
+└── <a href="./utils/">📁 utils</a>
+    ├── <a href="./utils/docx_generator/">📁 docx_generator</a>
+    │   ├── <a href="./utils/docx_generator/export_to_docx.py">📄 export_to_docx.py</a>
+    │   └── <a href="./utils/docx_generator/template.docx">📄 template.docx</a>
+    └── <a href="./utils/report_generator/">📁 report_generator</a>
+        ├── <a href="./utils/report_generator/generate_report.py">📄 generate_report.py</a>
+        ├── <a href="./utils/report_generator/static/">📁 static</a>
+        │   ├── <a href="./utils/report_generator/static/script.js">📄 script.js</a>
+        │   └── <a href="./utils/report_generator/static/style.css">📄 style.css</a>
+        └── <a href="./utils/report_generator/templates/">📁 templates</a>
+            └── <a href="./utils/report_generator/templates/report_template.html">📄 report_template.html</a>
 </pre>
